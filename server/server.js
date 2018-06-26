@@ -20,7 +20,14 @@ app.post('/todos', (req, res) => {
       res.status(400).send(e);
     });
 });
-
+//fina all todos and then function which takes 2 functions when err and when called and sucessful
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos})//using obj better than array - can set properties this way
+  }, (e) => {
+    res.status(400).send(e);
+  })
+});
 app.listen(3000, () => {
   console.log('started on port 3000');
 });
